@@ -1,5 +1,18 @@
 ---
 import Base from '../layouts/Base.astro';
-import {readingList} from '../data/reading-list';
+import { getCollection, render } from 'astro:content';
+const entries = (await getCollection('readingList'))
+  .sort((a, b) => a.data.title.localeCompare(b.data.title, 'en') || a.id.localeCompare(b.id, 'en'));
+const readingList = await Promise.all(entries.map(async entry => ({ entry, ...await render(entry) })));
 ---
-<Base title="Reading List" active="reading-list"><section class="page-heading"><h1>Reading List</h1><p>Books, articles, and other things worth keeping.</p></section><section class="archive">{readingList.length?<ul class="reading-list">{readingList.map(item=><li><a href={item.url}>{item.title} <span aria-hidden="true">↗</span></a>{item.author&&<p class="reading-author">{item.author}</p>}{item.note&&<p>{item.note}</p>}</li>)}</ul>:<p class="empty-state">No links yet.</p>}</section></Base>
+<Base title="Reading List" active="reading-list">
+  <section class="page-heading"><h1>Reading List</h1><p>Books, articles, and other things worth keeping.</p></section>
+  <section class="archive">
+    {readingList.length ? <ul class="reading-list">
+      {readingList.map(({ entry, Content }) => <li>
+        <a href={entry.data.url}>{entry.data.title} <span aria-hidden="true">↗</span></a>
+        {entry.body?.trim() && <div class="reading-note"><Content /></div>}
+      </li>)}
+    </ul> : <p class="empty-state">No links yet.</p>}
+  </section>
+</Base>

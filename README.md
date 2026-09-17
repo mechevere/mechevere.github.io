@@ -14,10 +14,25 @@ The deployment workflow `.github/workflows/deploy.yml` builds and publishes to G
 
 Learnings are Markdown files in `src/content/writing/`. Use title, description (for metadata and RSS), date, tags, and draft. Set `draft: true` to exclude an article and its tags from production. The current generic placeholder articles are published to demonstrate the layout; replace them with your writing.
 
-Tags are lowercase words/numbers separated by hyphens. Each tag has a static page at `/learnings/tags/<tag>/`. Lists display only titles and tags. The Reading List is populated via `src/data/reading-list.ts`.
+Tags are lowercase words/numbers separated by hyphens. Each tag has a static page at `/learnings/tags/<tag>/`. Lists display only titles and tags. The Reading List is populated from Markdown files in `src/content/reading-list/`, sorted by title.
 
 About contains placeholder bio text and a subtle Impressum link. The Impressum uses the owner-provided name and address. Public contact details and any further legal notices should be reviewed as the site scope evolves.
 
 ## Offline review
 
 Run `INCLUDE_DRAFTS=true npm run build`, then `python3 scripts/export-preview.py /absolute/path/preview.html`. This bundles pages and fonts into one offline HTML file. Run a normal production build before deploying; the workflow does this automatically.
+
+## Add a Reading List entry
+
+Create one `.md` file per link in `src/content/reading-list/`, for example `a-book.md`:
+
+```markdown
+---
+title: "Something worth reading"
+url: "https://example.com/article"
+---
+
+An optional note about why I saved it. **Markdown formatting** works here.
+```
+
+Only title and URL are required. Omit the body for a plain link. There are no tags or filters. Commit to `master` to publish.
