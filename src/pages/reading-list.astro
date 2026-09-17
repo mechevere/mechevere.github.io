@@ -10,7 +10,7 @@ const readingList = await Promise.all(entries.map(async entry => ({ entry, ...aw
   <section class="archive">
     {readingList.length ? <ul class="reading-list">
       {readingList.map(({ entry, Content }) => <li>
-        <a href={entry.data.url}>{entry.data.title} <span aria-hidden="true">↗</span></a>
+        <a href={entry.data.url}>{entry.data.title}</a>
         {entry.body?.trim() && <div class="reading-note"><Content /></div>}
       </li>)}
     </ul> : <p class="empty-state">No links yet.</p>}
