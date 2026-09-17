@@ -5,4 +5,4 @@ import TagFilter from '../../components/TagFilter.astro';
 import { getLearnings } from '../../lib/learnings';
 const posts=await getLearnings();
 ---
-<Base title="Learnings" active="learnings"><section class="page-heading"><h1>Learnings</h1><p>Notes and essays on things I’m learning.</p></section><TagFilter posts={posts}/><section class="archive"><PostList posts={posts}/>{!posts.length&&<p class="empty-state">First essays are on their way. Follow the <a href="/rss.xml">RSS feed</a> for new writing.</p>}</section></Base>
+<Base title="Learnings" active="learnings"><section class="page-heading"><h1>Learnings</h1><p>Notes on things I’m learning and building.</p></section><TagFilter posts={posts}/><section class="archive"><PostList posts={posts}/>{!posts.length&&<p class="empty-state">First essays are on their way. Follow the <a href="/rss.xml">RSS feed</a> for new writing.</p>}</section></Base>
