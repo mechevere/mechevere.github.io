@@ -1,0 +1,13 @@
+---
+import Base from '../../../layouts/Base.astro';
+import PostList from '../../../components/PostList.astro';
+import TagFilter from '../../../components/TagFilter.astro';
+import { getLearnings, getTags } from '../../../lib/learnings';
+export async function getStaticPaths() {
+  const posts = await getLearnings();
+  return getTags(posts).map(tag => ({ params: { tag }, props: { tag, posts } }));
+}
+const { tag, posts } = Astro.props;
+const matches = posts.filter(post => post.data.tags.includes(tag));
+---
+<Base title={`Learnings — ${tag}`} active="learnings"><section class="page-heading"><h1>Learnings</h1><p>Articles tagged <span class="selected-tag">{tag}</span>.</p></section><TagFilter posts={posts} active={tag}/><section class="archive"><PostList posts={matches}/></section></Base>

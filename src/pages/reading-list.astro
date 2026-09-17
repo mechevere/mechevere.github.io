@@ -1,0 +1,5 @@
+---
+import Base from '../layouts/Base.astro';
+import {readingList} from '../data/reading-list';
+---
+<Base title="Reading List" active="reading-list"><section class="page-heading"><h1>Reading List</h1><p>Books, articles, and other things worth keeping.</p></section><section class="archive">{readingList.length?<ul class="reading-list">{readingList.map(item=><li><a href={item.url}>{item.title} <span aria-hidden="true">↗</span></a>{item.author&&<p class="reading-author">{item.author}</p>}{item.note&&<p>{item.note}</p>}</li>)}</ul>:<p class="empty-state">No links yet.</p>}</section></Base>

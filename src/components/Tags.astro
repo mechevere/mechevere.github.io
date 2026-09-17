@@ -1,0 +1,5 @@
+---
+import { tagUrl } from '../lib/learnings';
+const { tags } = Astro.props as { tags: string[] };
+---
+{tags.length > 0 && <ul class="tags" aria-label="Article tags">{tags.map(tag => <li><a href={tagUrl(tag)}>{tag}</a></li>)}</ul>}

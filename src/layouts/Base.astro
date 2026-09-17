@@ -1,0 +1,12 @@
+---
+import '@fontsource/m-plus-1p/latin-400.css';
+import '@fontsource/m-plus-1p/latin-ext-400.css';
+import '@fontsource/m-plus-1p/latin-500.css';
+import '@fontsource/m-plus-1p/latin-ext-500.css';
+import '@fontsource/m-plus-1p/latin-700.css';
+import '@fontsource/m-plus-1p/latin-ext-700.css';
+import '../styles/global.css';
+const {title='Mateo Echeverri',description='Mateo Echeverri — Learnings, Reading List, and About.',active='',article=false}=Astro.props;
+const preview=import.meta.env.DEV || import.meta.env.INCLUDE_DRAFTS==='true';
+---
+<!doctype html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width"/><title>{title==='Mateo Echeverri'?title:`${title} — Mateo Echeverri`}</title><meta name="description" content={description}/><link rel="canonical" href={new URL(Astro.url.pathname,Astro.site)}/><meta property="og:title" content={title}/><meta property="og:description" content={description}/><meta property="og:type" content={article?'article':'website'}/><meta property="og:image" content={new URL('/social.svg',Astro.site)}/><meta name="twitter:card" content="summary_large_image"/><link rel="icon" href="/favicon.svg" type="image/svg+xml"/><link rel="alternate" type="application/rss+xml" title="Mateo Echeverri" href="/rss.xml"/>{preview&&<meta name="robots" content="noindex,nofollow"/>}</head><body id="top"><a class="skip" href="#main">Skip to content</a><div class="shell"><header><a class="brand" href="/">Mateo Echeverri</a><nav aria-label="Main navigation"><a href="/learnings/" aria-current={active==='learnings'?'page':undefined}>Learnings</a><a href="/reading-list/" aria-current={active==='reading-list'?'page':undefined}>Reading List</a><a href="/about/" aria-current={active==='about'?'page':undefined}>About</a></nav></header><main id="main"><slot/></main></div>{preview&&<aside class="preview-tag">Design preview · placeholder content</aside>}</body></html>

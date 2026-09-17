@@ -1,0 +1,7 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { getTags, tagUrl } from '../lib/learnings';
+const { posts, active = '' } = Astro.props as { posts: CollectionEntry<'writing'>[]; active?: string };
+const tags = getTags(posts);
+---
+{tags.length > 0 && <nav class="tag-filter" aria-label="Filter learnings by tag"><a href="/learnings/" aria-current={!active ? 'page' : undefined}>All <span>({posts.length})</span></a>{tags.map(tag => <a href={tagUrl(tag)} aria-current={active === tag ? 'page' : undefined}>{tag} <span>({posts.filter(post => post.data.tags.includes(tag)).length})</span></a>)}</nav>}

@@ -1,0 +1,1 @@
+{"name":"mateo-personal-site","private":true,"type":"module","scripts":{"dev":"astro dev --host 0.0.0.0","build":"astro build","preview":"astro preview --host 0.0.0.0","check":"astro check"},"dependencies":{"astro":"7.3.3","@fontsource/m-plus-1p":"latest","@astrojs/rss":"latest","@astrojs/sitemap":"latest"},"devDependencies":{"@astrojs/check":"latest","typescript":"latest"}}
