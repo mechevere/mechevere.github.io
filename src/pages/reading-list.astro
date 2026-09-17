@@ -6,7 +6,7 @@ const entries = (await getCollection('readingList'))
 const readingList = await Promise.all(entries.map(async entry => ({ entry, ...await render(entry) })));
 ---
 <Base title="Reading List" active="reading-list">
-  <section class="page-heading"><h1>Reading List</h1><p>Books, articles, and other things worth keeping.</p></section>
+  <section class="page-heading"><h1>Reading List</h1><p>Books, articles, and people worth reading.</p></section>
   <section class="archive">
     {readingList.length ? <ul class="reading-list">
       {readingList.map(({ entry, Content }) => <li>
